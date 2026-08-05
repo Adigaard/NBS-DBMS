@@ -1,2 +1,2 @@
 # dbms-project
-so it's the first one .
+so it's the first one ./
