@@ -1,1 +1,30 @@
+#compressor function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#decompressor funtion
+
+
+
+
+
+
+
+
+
+
+
+
+
 
