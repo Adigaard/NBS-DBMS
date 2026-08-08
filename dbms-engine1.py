@@ -1,17 +1,17 @@
 #insert function
-
-
-
-
-
-
-
-
-
-
-
-
-
+def insert(head,key):
+    
+    t = head
+    while t:
+        if t.val > key.val:
+            if t.left == None:
+                t.left = key
+                return
+            t = t.left
+        elif t.val < key.val:
+            if t.right == None:
+                t.right = key
+            t = t.right
 
 
 
