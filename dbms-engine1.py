@@ -199,19 +199,19 @@
 
 
 #search function
-
-
-
-
-
-
-
-
-
-
-
-
-
+def search_fn(head,key):
+    temp=head
+    while temp!=None:
+        if key>temp.val:
+            temp=temp.right
+        elif key<temp.val:
+            temp=temp.left
+        else:
+            break
+    if temp==None:
+        return "ERROR: NOT FOUND"
+    else:
+        return temp.lst
 
 
 
@@ -499,10 +499,10 @@
 
 
 #get_size funciton
-
-
-
-
+def get_size(head):
+    if head==None:
+        return 0
+    return 1+get_size(head.left)+get_size(head.right)
 
 
 
