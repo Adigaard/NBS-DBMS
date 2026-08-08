@@ -1,17 +1,17 @@
 #insert function
-
-
-
-
-
-
-
-
-
-
-
-
-
+def insert(head,key):
+    
+    t = head
+    while t:
+        if t.val > key.val:
+            if t.left == None:
+                t.left = key
+                return
+            t = t.left
+        elif t.val < key.val:
+            if t.right == None:
+                t.right = key
+            t = t.right
 
 
 
@@ -199,19 +199,19 @@ def delete_fn(head, key):
 
 
 #search function
-
-
-
-
-
-
-
-
-
-
-
-
-
+def search_fn(head,key):
+    temp=head
+    while temp!=None:
+        if key>temp.val:
+            temp=temp.right
+        elif key<temp.val:
+            temp=temp.left
+        else:
+            break
+    if temp==None:
+        return "ERROR: NOT FOUND"
+    else:
+        return temp.lst
 
 
 
@@ -299,7 +299,11 @@ def delete_fn(head, key):
 
 
 #find min funciton
-
+def min_node_fn(head):
+    if(head==None):return "DATA NOT FOUND"
+    temp=head
+    while(temp.left!=None):temp=temp.left
+    return temp
 
 
 
@@ -399,7 +403,11 @@ def delete_fn(head, key):
 
 
 #find max function
-
+def max_node_fn(head):
+    if(head==None):return "DATA NOT FOUND"
+    temp=head
+    while(temp.right!=None):temp=temp.right
+    return temp
 
 
 
@@ -499,10 +507,10 @@ def delete_fn(head, key):
 
 
 #get_size funciton
-
-
-
-
+def get_size(head):
+    if head==None:
+        return 0
+    return 1+get_size(head.left)+get_size(head.right)
 
 
 
