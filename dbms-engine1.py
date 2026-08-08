@@ -599,7 +599,27 @@
 
 
 #get height function
+from collections import deque
+def GetHeight(root):
+    if root is None:
+        return -1
+    q = deque()
+    height = -1
+    q.append(root)
+    while q:
+        level_size = len(q)
+        height += 1
 
+        for i in range(level_size):
+            curr = q.popleft()
+
+            if curr.left is not None:
+                q.append(curr.left)
+
+            if curr.right is not None:
+                q.append(curr.right)
+
+    return height
 
 
 
