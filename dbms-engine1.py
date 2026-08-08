@@ -299,7 +299,11 @@ def search_fn(head,key):
 
 
 #find min funciton
-
+def min_node_fn(head):
+    if(head==None):return "DATA NOT FOUND"
+    temp=head
+    while(temp.left!=None):temp=temp.left
+    return temp
 
 
 
@@ -399,7 +403,11 @@ def search_fn(head,key):
 
 
 #find max function
-
+def max_node_fn(head):
+    if(head==None):return "DATA NOT FOUND"
+    temp=head
+    while(temp.right!=None):temp=temp.right
+    return temp
 
 
 
