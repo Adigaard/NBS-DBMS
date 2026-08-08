@@ -11,6 +11,7 @@ def insert(head,key):
         elif t.val < key.val:
             if t.right == None:
                 t.right = key
+                return
             t = t.right
 
 
