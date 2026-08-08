@@ -602,7 +602,7 @@
 from collections import deque
 def GetHeight(root):
     if root is None:
-        return -1
+        return "ERROR: TREE NOT FOUND"
     q = deque()
     height = -1
     q.append(root)
@@ -620,26 +620,6 @@ def GetHeight(root):
                 q.append(curr.right)
 
     return height
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
