@@ -85,6 +85,7 @@
 
 
 
+ 
 
 
 
@@ -95,63 +96,62 @@
 
 
 
-
-
+ 
 
 #delete function
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+def delete_fn(head, key):
+    if(head==None):return None
+    temp=head
+    if(head.val==key):
+        l=head.left
+        r=head.right
+        if(r==None):return l
+        else:
+            while(r.left!= None):r=r.left
+            r.left=l
+            r=head.right
+            del head
+            return r
+    while(temp!= None):
+        if(temp.val<key):
+            if(temp.right!=None and temp.right.val == key):
+                l=temp.right.left
+                if(temp.right.right!=None): 
+                    r=temp.right.right
+                    while(r.left != None):r=r.left
+                    r.left=l
+                    delnode=temp.right
+                    temp.right=delnode.right
+                    del delnode
+                else:
+                    a=temp.right
+                    temp.right=l
+                    del a
+                break
+            else:
+                temp=temp.right
+        else:
+            if(temp.left!=None and temp.left.val == key):
+                l=temp.left.left
+                if(temp.left.right!=None):
+                    r=temp.left.right
+                    while(r.left!=None): r=r.left
+                    r.left=l
+                    delnode=temp.left
+                    temp.left=delnode.right
+                    del delnode
+                else:
+                    a=temp.left
+                    temp.left=l
+                    del a
+                break
+            else:
+                temp=temp.left
+    if(temp==None):
+        print("ERROR: Type data not found")
+        return head
+    else: return head
+        
 
 
 
