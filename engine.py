@@ -1,15 +1,15 @@
-class TreeNode:
-    def __init__(self,val,lst=None,left=None,right=None):
-        self.val = val
-        self.lst = lst
-        self.left = left
-        self.right = right
-class ListNode:
-    def __init__(self,head,size,next):
-        self.head = head
-        self.size = size
-        self.next = next
+from bst_file import bs_tree
+from bst_file import TreeNode
+
+class Table:
+    def __init__(self):
+        self.lst=[bs_tree()]*8
+
+
+
         
+    #insert funciton
+    
 
 
 
@@ -58,8 +58,8 @@ class ListNode:
 
 
 
+    #delete function
 
-#insert funciton
 
 
 
@@ -67,7 +67,6 @@ class ListNode:
 
 
 
-#delete function
 
 
 
@@ -75,7 +74,6 @@ class ListNode:
 
 
 
-#double the linked list function
 
 
 
@@ -92,7 +90,6 @@ class ListNode:
 
 
 
-#display function
 
 
 
@@ -106,12 +103,12 @@ class ListNode:
 
 
 
-#sort by function
 
 
 
 
 
+    #double the linked list function
 
 
 
@@ -121,7 +118,6 @@ class ListNode:
 
 
 
-#edit function
 
 
 
@@ -134,4 +130,182 @@ class ListNode:
 
 
 
-#search function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    #display function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    #sort by function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    #edit function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    #search function
