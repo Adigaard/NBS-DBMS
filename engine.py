@@ -75,7 +75,10 @@ class Table:
 
 
     #delete function
-
+def delete(self,val):
+    a=self.my_hash(val)
+    i=a%(self.size)
+    self.lst[i].delete_fn(val)
 
 
 
