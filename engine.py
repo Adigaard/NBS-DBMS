@@ -307,3 +307,7 @@ def delete(self,val):
 
 
     #search function
+    def search(self,val):
+        a=self.my_hash(val)
+        i=a%self.size
+        return self.lst[i].search_fn(val)
