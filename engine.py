@@ -228,7 +228,36 @@ def delete(self,val):
 
 
     #edit function
-
+def edit(self, key, idx, new_val):
+    k = int(key)
+    i = self.my_hash(key) % self.size
+    n = self.lst[i].search(k)
+    if n is None:
+        print("RECORD DOESNOT EXIST")
+        return False
+    try:
+        idx = int(idx)
+    except (TypeError, ValueError):
+        print("INVALID COLUMN INDEX")
+        return False
+    if idx < 0 or idx >= len(n.val):
+        print("COLUMN DOESNOT EXIST")
+        return False
+    if idx != 0:
+        n.val[idx] = new_val
+        return True
+    nk = int(new_val)
+    if nk == k:
+        return True
+    j = self.my_hash(new_val) % self.size
+    if self.lst[j].search(nk) is not None:
+        print("NEW KEY ALREADY EXISTS")
+        return False
+    rec = list(n.val)
+    rec[0] = new_val
+    self.delete(key)
+    self.insert(rec)
+    return True
 
 
 
