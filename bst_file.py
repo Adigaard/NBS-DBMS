@@ -1,6 +1,6 @@
 from collections import deque
 class TreeNode:
-    def __init__(self,val,lst=None,left=None,right=None):
+    def __init__(self,val,lst,left=None,right=None):
         self.val = val
         self.lst = lst
         self.left = left
