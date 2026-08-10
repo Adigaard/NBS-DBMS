@@ -2,9 +2,9 @@ from bst_file import bs_tree
 from bst_file import TreeNode
 
 class Table:
-    def __init__(self):
-        self.lst=[bs_tree()]*8
-
+    def __init__(self,size):
+        self.size=size
+        self.lst=[bs_tree()]*(self.size)
 
 
         
@@ -59,7 +59,6 @@ class Table:
 
 
     #delete function
-
 
 
 
