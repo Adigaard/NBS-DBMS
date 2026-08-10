@@ -150,26 +150,26 @@ class bs_tree:
         self.size=0
 
   # inorder function
-def inorder(self):
-    ans = []
-    curr = self.root
+    def inorder(self):
+        ans = []
+        curr = self.root
 
-    while curr is not None:
-        if curr.left is None:
-            ans.append(curr.lst)
-            curr = curr.right
-        else:
-            temp = curr.left
-
-            while temp.right is not None and temp.right is not curr:
-                temp = temp.right
-
-            if temp.right is None:
-                temp.right = curr
-                curr = curr.left
-            else:
-                temp.right = None
+        while curr is not None:
+            if curr.left is None:
                 ans.append(curr.lst)
                 curr = curr.right
+            else:
+                temp = curr.left
 
-    return ans
+                while temp.right is not None and temp.right is not curr:
+                    temp = temp.right
+
+                if temp.right is None:
+                    temp.right = curr
+                    curr = curr.left
+                else:
+                    temp.right = None
+                    ans.append(curr.lst)
+                    curr = curr.right
+
+        return ans
