@@ -9,21 +9,25 @@ class TreeNode:
 class bs_tree:
     def __init__(self):
         self.root=None
+        self.size=0
     #insert function
     def insert(self,key):
         if(self.root == None):
             self.root=key
+            self.size+=1
             return
         t = self.root
         while t:
             if t.val > key.val:
                 if t.left == None:
                     t.left = key
+                    self.size+=1
                     return
                 t = t.left
             elif t.val < key.val:
                 if t.right == None:
                     t.right = key
+                    self.size+=1
                     return
                 t = t.right
 
@@ -39,12 +43,14 @@ class bs_tree:
             r=self.root.right
             if(r==None):
                 self.root=l
+                self.size-=1
                 return
             else:
                 while(r.left!= None):r=r.left
                 r.left=l
                 r=self.root.right
                 self.root=r
+                self.size-=1
                 return
         while(temp!= None):
             if(temp.val<key):
@@ -76,8 +82,9 @@ class bs_tree:
         if(temp==None):
             print("ERROR: Type data not found")
             return
-        else: return
-
+        else: 
+            self.size-=1
+            return
 
 
     #search function
@@ -114,8 +121,6 @@ class bs_tree:
         while(temp.right!=None):temp=temp.right
         return temp
 
-
-
     #get height function
     def GetHeight(self):
         if self.root is None:
@@ -142,4 +147,5 @@ class bs_tree:
     #clear function
     def clean(self):
         self.root=None
+        self.size=0
 
