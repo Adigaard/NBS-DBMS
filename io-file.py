@@ -3,6 +3,9 @@
 #Setting up the interface
 import os
 import sys
+from engine import Table
+from bst_file import bs_tree
+from bst_file import TreeNode
 # You will import File 3 and File 4 here later!
 # from engine import Table
 # from storage import save_database
@@ -22,7 +25,8 @@ def print_banner():
 def main():
     clear_screen()
     print_banner()
-    
+    table=[]
+    table_index={}
     # Initialize your Database Engine here (from File 3)
     # my_db = Table() 
 
@@ -49,7 +53,201 @@ def main():
                 print("Compressing and saving data...")
                 # Call File 4's save function here!
                 sys.exit(0)
-                
+            elif action=="CREATE_TABLE":
+                print("created table")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            elif action == "ENTER_TABLE":
+                print("entered table")
+
+
+
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            elif action == "SHOW_TABLE":
+                print("show table")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            elif action == "EXIT_TABLE":
+                print("EXIT TABLE")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             elif action == "INSERT":
                 # Check if they provided enough arguments
                 if len(command_parts) < 4:
@@ -60,11 +258,241 @@ def main():
                     email = command_parts[3]
                     # my_db.insert(user_id, name, email)
                     print(f"Success: Inserted {name} into database.")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     
             elif action == "DISPLAY":
                 # my_db.display_all()
                 print("Displaying all records...")
-                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            elif action=="DELETE":
+                print("Deleted node")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            elif action=="EDIT":
+                print("EDITED the data")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            elif action=="SEARCH":
+                print("search")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             else:
                 print(f"Error: Unknown command '{action}'")
 
