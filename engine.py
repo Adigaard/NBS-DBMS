@@ -1,6 +1,6 @@
 from bst_file import bs_tree
 from bst_file import TreeNode
-
+import heapq
 class Table:
     def __init__(self,size):
         self.size=size
@@ -24,9 +24,7 @@ class Table:
 
         return 
         
-
-
-        
+   
     #insert funciton
     def insert(self,lst):
         a = lst[0]
@@ -39,52 +37,6 @@ class Table:
     
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     #delete function
     def delete(self,val):
         a=self.my_hash(val)
@@ -93,149 +45,36 @@ class Table:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     #display function
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    #sort by function
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    def merge_k_sorted(self,arrays):
+        result = []
+        min_heap = []
+
+        for i in range(len(arrays)):
+            if arrays[i]: 
+                key=int(arrays[i][0][0])
+                heapq.heappush(min_heap, (key, i, 0))
+
+        while min_heap:
+            key, arr_idx, elem_idx = heapq.heappop(min_heap)
+            result.append(arrays[arr_idx][elem_idx])
+
+            next_elem_idx = elem_idx + 1
+            if next_elem_idx < len(arrays[arr_idx]):
+                next_key= int(arrays[arr_idx][next_elem_idx][0])
+                heapq.heappush(min_heap, (next_key, arr_idx, next_elem_idx))
+
+        return result
+
+    def get_all_sorted(self):
+        all_lists = []
+        for i in range (self.size):
+            all_lists.append(self.lst[i].inorder())  
+        return self.merge_k_sorted(all_lists)
+
+    def display(self):
+            sorted_records = self.get_all_sorted()
+            return sorted_records
 
 
     #edit function
@@ -269,52 +108,6 @@ class Table:
         self.delete(key)
         self.insert(rec)
         return True
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     #search function
