@@ -172,6 +172,9 @@ def main():
                 c = command_parts[3]
                 if command_parts[3].isdigit() == True:
                     c = int(command_parts[3])
+                if b == 0 and type(c) != curr_table.datatype:
+                    print("ERROR: NEW PRIMARY KEY MUST MATCH TABLE DATATYPE")
+                    continue
                 curr_table.edit(a , b , c)
 
                 
