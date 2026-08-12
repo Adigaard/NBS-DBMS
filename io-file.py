@@ -44,7 +44,7 @@ def main():
                 # Call File 4's save function here!
                 sys.exit(0)
             elif action=="CREATE_TABLE":
-                if len(command_parts)<2:
+                if len(command_parts)<4:
                     print("ERROR NAME NOT GIVEN")
                     continue
                 table_name = command_parts[1]
@@ -84,6 +84,7 @@ def main():
 
             elif action == "EXIT_TABLE":
                 curr_table = None
+                curr_table_name = None
 
 
             elif action == "INSERT":
@@ -98,6 +99,7 @@ def main():
                     continue
                 if len(lst) != len(curr_table.col_name):
                     print("ERROR INSUFFICIENT DATA")
+                    continue
                 curr_table.insert(lst)
                 continue
        
