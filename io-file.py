@@ -6,6 +6,7 @@ import sys
 from engine import Table
 from bst_file import bs_tree
 from bst_file import TreeNode
+from storage import load_database, save_database
 def clear_screen():
     # Clears terminal for both Windows ('cls') and Linux/Mac ('clear')
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -20,8 +21,7 @@ def print_banner():
 def main():
     clear_screen()
     print_banner()
-    table=[]
-    table_index={}
+    table,table_index=load_database()
     curr_table = None 
     curr_table_name = None
     while True:
@@ -41,6 +41,7 @@ def main():
 
             if action == "EXIT":
                 print("Compressing and saving data...")
+                save_database(table, table_index)
                 # Call File 4's save function here!
                 sys.exit(0)
             elif action=="CREATE_TABLE":
@@ -206,6 +207,7 @@ def main():
         # Catch Ctrl+C gracefully
         except KeyboardInterrupt:
             print("\nForce quitting. Data may not be saved!")
+            save_database(table, table_index)
             sys.exit(0)
         except IndexError:
             print("Error: Missing arguments. Please check your command syntax.")
