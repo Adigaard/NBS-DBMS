@@ -6,18 +6,13 @@ import sys
 from engine import Table
 from bst_file import bs_tree
 from bst_file import TreeNode
-# You will import File 3 and File 4 here later!
-# from engine import Table
-# from storage import save_database
-
 def clear_screen():
     # Clears terminal for both Windows ('cls') and Linux/Mac ('clear')
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def print_banner():
     print("========================================")
-    print("       AIGA DBMS PROJECT v1.0          ")
-    print("      Type 'EXIT' to save and close     ")
+    print("         NBS DBMS PROJECT v1.0          ")
     print("========================================\n")
 # ---------------------------------------------
 
@@ -27,30 +22,19 @@ def main():
     print_banner()
     table=[]
     table_index={}
-    # Initialize your Database Engine here (from File 3)
-    # my_db = Table() 
-
-    # --- THIS IS THE PART YOUR TEAM WRITES (The REPL) ---
     curr_table = None 
     while True:
         
         try:
-            # 1. The Prompt
             raw_input = input("dbms>> ")
             
-            # 2. The Lexer (Clean and split the input)
             clean_input = raw_input.strip()
             if not clean_input:
-                continue # If they just hit Enter, do nothing and loop again
+                continue
                 
-            # Split into words: ["INSERT", "101", "Alice"]
             command_parts = clean_input.split() 
-            
-            # The first word is the action. Convert it to UPPERCASE so 
-            # 'insert', 'Insert', and 'INSERT' all work.
             action = command_parts[0].upper()
 
-            # 3. The Router
             if action == "EXIT":
                 print("Compressing and saving data...")
                 # Call File 4's save function here!
@@ -72,46 +56,6 @@ def main():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             elif action == "ENTER_TABLE":
                 if curr_table != None:
                     print("ERROR - TABLE ALREADY OPEN")
@@ -124,53 +68,6 @@ def main():
                 curr_table = table[b]
 
 
-
-
-
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             elif action == "SHOW_TABLE":
                 if len(table_index) == 0:
                     print("NO TABLE CREATED")
@@ -180,104 +77,17 @@ def main():
                     
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             elif action == "EXIT_TABLE":
                 curr_table = None
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             elif action == "INSERT":
+                
                 lst = command_parts[1:]
+                for i in range(len(lst)):
+                    if lst[i].isdigit() == True:
+                        lst[i] = int(lst[i])
+
                 if curr_table == None:
                     print("ERROR NO TABLE OPEN")
                     continue
@@ -285,240 +95,75 @@ def main():
                     print("ERROR INSUFFICIENT DATA")
                 curr_table.insert(lst)
                 continue
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    
+       
             elif action == "DISPLAY":
+                if curr_table == None:
+                    print("ERROR")
+                    continue
                 # my_db.display_all()
-                pass
+                a=curr_table.display()
+                if(a== None):
+                    print("ERROR: NO INPUT FOUND")
+                    continue
+                for i in a:
+                    print("| ",end="")
+                    for j in i:
+                        print(f" {j} |", end="")
+                    print("\n")
  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             elif action=="DELETE":
-                print("Deleted node")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                if curr_table == None:
+                    print("ERROR ")
+                    continue
+                a = command_parts[1]
+                if a.isdigit() == True:
+                    a = int(a)
+                if curr_table.datatype == None:
+                    print("ERROR")
+                    continue
+                if type(a) != curr_table.datatype :
+                    print("ERROR")
+                    continue
+                
+                curr_table.delete(a)
 
 
             elif action=="EDIT":
-                print("EDITED the data")
+                if curr_table == None:
+                    print("ERROR")
+                    continue
+                a = command_parts[1]
+                if curr_table.datatype == None:
+                    print("ERROR")
+                    continue
+                if type(a) != curr_table.datatype:
+                    print("ERROR")
+                    continue
+                b = curr_table.col_name.index(command_parts[1])
+                c = command_parts[3]
+                d = command_parts[5]
+                if command_parts[3].isdigit() == True:
+                    c = int(command_parts[3])
+                if command_parts[5].isdigit() == True:
+                    d = int(command_parts[5])
+                curr_table.edit(d , b , c)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                
             elif action=="SEARCH":
-                print("search")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                if curr_table == None:
+                    print("ERROR")
+                    continue
+                a = command_parts[1]
+                if a.isdigit() == True:
+                    a = int(a)
+                if curr_table.datatype == None:
+                    print("ERROR")
+                    continue
+                if type(a) != curr_table.datatype:
+                    print("ERROR")
+                    continue
+                curr_table.search(command_parts[1])
 
 
             else:

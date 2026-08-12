@@ -6,6 +6,7 @@ class Table:
         self.size=size
         self.lst = [bs_tree() for _ in range(self.size)]
         self.col_name = []
+        self.datatype = None
     def my_hash(self,s):
         h = 0
         for ch in str(s):
@@ -29,6 +30,8 @@ class Table:
     #insert funciton
     def insert(self,lst):
         a = lst[0]
+        if self.datatype == None:
+            self.datatype = type(a)
         b = self.my_hash(a)
         i = b%self.size
         c = TreeNode(int(lst[0]),lst)
@@ -70,7 +73,11 @@ class Table:
     def get_all_sorted(self):
         all_lists = []
         for i in range (self.size):
-            all_lists.append(self.lst[i].inorder())  
+            p=self.lst[i].inorder()
+            if(len(p)!=0) : all_lists.append(p)
+        if(len(all_lists)==0):
+            return None
+
         return self.merge_k_sorted(all_lists)
 
     def display(self):
