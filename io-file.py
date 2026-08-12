@@ -23,9 +23,14 @@ def main():
     table=[]
     table_index={}
     curr_table = None 
+    curr_table_name = None
     while True:
         try:
-            raw_input = input("dbms>> ")
+            if curr_table is None:
+                prompt = "dbms>> "
+            else:
+                prompt = f"dbms>>{curr_table_name}>> "
+            raw_input = input(prompt)
             
             clean_input = raw_input.strip()
             if not clean_input:
@@ -65,6 +70,7 @@ def main():
                     continue
 
                 curr_table = table[b]
+                curr_table_name = command_parts[1]
 
 
             elif action == "SHOW_TABLE":
