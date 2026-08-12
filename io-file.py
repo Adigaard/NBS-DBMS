@@ -24,7 +24,6 @@ def main():
     table_index={}
     curr_table = None 
     while True:
-        
         try:
             raw_input = input("dbms>> ")
             
@@ -105,6 +104,11 @@ def main():
                 if(a== None):
                     print("ERROR: NO INPUT FOUND")
                     continue
+                print("| ",end="")
+                for i in curr_table.col_name:
+                    print(f" {i} |", end="")
+                print()
+                print()
                 for i in a:
                     print("| ",end="")
                     for j in i:
@@ -131,23 +135,29 @@ def main():
 
             elif action=="EDIT":
                 if curr_table == None:
-                    print("ERROR")
+                    print("ERROR:NO TABLE OPEN")
                     continue
-                a = command_parts[1]
                 if curr_table.datatype == None:
-                    print("ERROR")
+                    print("ERROR:DATA NOT PRESENT")
                     continue
+                if (len(command_parts) !=6):
+                    print("ERROR:INVALID SYNTAX")
+                    continue
+                a = command_parts[5]
+                if a.isdigit()==True:
+                    a=int(a)
                 if type(a) != curr_table.datatype:
-                    print("ERROR")
+                    print("ERROR:INPUT HAS WRONG DATATYPE")
                     continue
-                b = curr_table.col_name.index(command_parts[1])
+                try:
+                    b = curr_table.col_name.index(command_parts[1])
+                except ValueError:
+                    print("ERROR:COLUMN DOESN'T EXIST")
+                    continue
                 c = command_parts[3]
-                d = command_parts[5]
                 if command_parts[3].isdigit() == True:
                     c = int(command_parts[3])
-                if command_parts[5].isdigit() == True:
-                    d = int(command_parts[5])
-                curr_table.edit(d , b , c)
+                curr_table.edit(a , b , c)
 
                 
             elif action=="SEARCH":
@@ -163,8 +173,14 @@ def main():
                 if type(a) != curr_table.datatype:
                     print("ERROR")
                     continue
-                curr_table.search(command_parts[1])
-
+                p=curr_table.search(a)
+                if(p=="ERROR: NOT FOUND"):
+                    print("ERROR: NOT FOUND")
+                    continue
+                print("| ",end="")
+                for i in p:
+                    print(f" {i} |", end="")
+                print()
 
             else:
                 print(f"Error: Unknown command '{action}'")
