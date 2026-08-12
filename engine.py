@@ -34,7 +34,7 @@ class Table:
             self.datatype = type(a)
         b = self.my_hash(a)
         i = b%self.size
-        c = TreeNode(int(lst[0]),lst)
+        c = TreeNode(lst[0],lst)
         self.lst[i].insert(c)
         if (self.lst[i].size == 256):
             self.double_array()
@@ -56,7 +56,7 @@ class Table:
 
         for i in range(len(arrays)):
             if arrays[i]: 
-                key=int(arrays[i][0][0])
+                key=arrays[i][0][0]
                 heapq.heappush(min_heap, (key, i, 0))
 
         while min_heap:
@@ -65,7 +65,7 @@ class Table:
 
             next_elem_idx = elem_idx + 1
             if next_elem_idx < len(arrays[arr_idx]):
-                next_key= int(arrays[arr_idx][next_elem_idx][0])
+                next_key= arrays[arr_idx][next_elem_idx][0]
                 heapq.heappush(min_heap, (next_key, arr_idx, next_elem_idx))
 
         return result
@@ -87,7 +87,7 @@ class Table:
 
     #edit function
     def edit(self, key, idx, new_val):
-        k = int(key)
+        k = key
         i = self.my_hash(key) % self.size
         n = self.lst[i].search_fn(k)
         if n == "ERROR: NOT FOUND":
@@ -104,7 +104,7 @@ class Table:
         if idx != 0:
             n[idx] = new_val
             return True
-        nk = int(new_val)
+        nk = new_val
         if nk == k:
             return True
         j = self.my_hash(new_val) % self.size

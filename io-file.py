@@ -45,11 +45,11 @@ def main():
                 sys.exit(0)
             elif action=="CREATE_TABLE":
                 if len(command_parts)<4:
-                    print("ERROR NAME NOT GIVEN")
+                    print("ERROR:INSUFFICIENT DATA")
                     continue
                 table_name = command_parts[1]
                 if table_index.get(table_name) != None:
-                    print("ERROR - TABLE ALREADY EXIST ")
+                    print("ERROR:TABLE ALREADY EXIST ")
                     continue
 
                 a = Table(8)
@@ -62,11 +62,14 @@ def main():
 
             elif action == "ENTER_TABLE":
                 if curr_table != None:
-                    print("ERROR - TABLE ALREADY OPEN")
+                    print("ERROR:TABLE ALREADY OPEN")
+                    continue
+                if(len(command_parts)!=2):
+                    print("ERROR: INVALID SYNTAX")
                     continue
                 b = table_index.get(command_parts[1])
                 if b == None:
-                    print("ERROR - TABLE DOESN'T EXIST")
+                    print("ERROR:TABLE DOESN'T EXIST")
                     continue
 
                 curr_table = table[b]
@@ -75,7 +78,7 @@ def main():
 
             elif action == "SHOW_TABLE":
                 if len(table_index) == 0:
-                    print("NO TABLE CREATED")
+                    print("ERROR:NO TABLE CREATED")
                     continue
                 for i,j in table_index.items():
                     print(i)
@@ -95,17 +98,21 @@ def main():
                         lst[i] = int(lst[i])
 
                 if curr_table == None:
-                    print("ERROR NO TABLE OPEN")
+                    print("ERROR:NO TABLE OPEN")
                     continue
                 if len(lst) != len(curr_table.col_name):
-                    print("ERROR INSUFFICIENT DATA")
+                    print("ERROR:INSUFFICIENT DATA")
+                    continue
+                p=curr_table.search(lst[0])
+                if(p!="ERROR: NOT FOUND"):
+                    print("ERROR:DATA ALREADY PRESENT")
                     continue
                 curr_table.insert(lst)
                 continue
        
             elif action == "DISPLAY":
                 if curr_table == None:
-                    print("ERROR")
+                    print("ERROR: NO TABLE OPEN")
                     continue
                 # my_db.display_all()
                 a=curr_table.display()
@@ -126,16 +133,16 @@ def main():
 
             elif action=="DELETE":
                 if curr_table == None:
-                    print("ERROR ")
+                    print("ERROR : NO TABLE OPEN")
                     continue
                 a = command_parts[1]
                 if a.isdigit() == True:
                     a = int(a)
                 if curr_table.datatype == None:
-                    print("ERROR")
+                    print("ERROR:DATA NOT PRESENT")
                     continue
                 if type(a) != curr_table.datatype :
-                    print("ERROR")
+                    print("ERROR:DATATYPE DOESN'T MATCH")
                     continue
                 
                 curr_table.delete(a)
@@ -170,16 +177,16 @@ def main():
                 
             elif action=="SEARCH":
                 if curr_table == None:
-                    print("ERROR")
+                    print("ERROR:NO TABLE OPEN")
                     continue
                 a = command_parts[1]
                 if a.isdigit() == True:
                     a = int(a)
                 if curr_table.datatype == None:
-                    print("ERROR")
+                    print("ERROR:DATA DOESN'T EXIST")
                     continue
                 if type(a) != curr_table.datatype:
-                    print("ERROR")
+                    print("ERROR:DATATYPE DOESN'T MATCH")
                     continue
                 p=curr_table.search(a)
                 if(p=="ERROR: NOT FOUND"):
@@ -197,9 +204,11 @@ def main():
         except KeyboardInterrupt:
             print("\nForce quitting. Data may not be saved!")
             sys.exit(0)
+        except IndexError:
+            print("Error: Missing arguments. Please check your command syntax.")
         # Catch if they type letters for the ID instead of numbers
-        except ValueError:
-            print("Error: ID must be a number.")
+        except ValueError as e:
+            print(f"System Error: Invalid data format as ({e})")
 
 if __name__ == "__main__":
     main()
