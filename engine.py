@@ -5,6 +5,7 @@ class Table:
     def __init__(self,size):
         self.size=size
         self.lst = [bs_tree() for _ in range(self.size)]
+        self.col_name = []
     def my_hash(self,s):
         h = 0
         for ch in str(s):

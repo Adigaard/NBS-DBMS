@@ -31,7 +31,9 @@ def main():
     # my_db = Table() 
 
     # --- THIS IS THE PART YOUR TEAM WRITES (The REPL) ---
+    curr_table = None 
     while True:
+        
         try:
             # 1. The Prompt
             raw_input = input("dbms>> ")
@@ -42,7 +44,7 @@ def main():
                 continue # If they just hit Enter, do nothing and loop again
                 
             # Split into words: ["INSERT", "101", "Alice"]
-            command_parts = clean_input.split(" ") 
+            command_parts = clean_input.split() 
             
             # The first word is the action. Convert it to UPPERCASE so 
             # 'insert', 'Insert', and 'INSERT' all work.
@@ -54,7 +56,19 @@ def main():
                 # Call File 4's save function here!
                 sys.exit(0)
             elif action=="CREATE_TABLE":
-                print("created table")
+                if len(command_parts)<2:
+                    print("ERROR NAME NOT GIVEN")
+                    continue
+                table_name = command_parts[1]
+                if table_index.get(table_name) != None:
+                    print("ERROR - TABLE ALREADY EXIST ")
+                    continue
+
+                a = Table(8)
+                a.col_name = command_parts[3:]
+                table.append(a)
+                n = len(table)-1
+                table_index[table_name] = n
 
 
 
@@ -99,7 +113,16 @@ def main():
 
 
             elif action == "ENTER_TABLE":
-                print("entered table")
+                if curr_table != None:
+                    print("ERROR - TABLE ALREADY OPEN")
+                    continue
+                b = table_index.get(command_parts[1])
+                if b == None:
+                    print("ERROR - TABLE DOESN'T EXIST")
+                    continue
+
+                curr_table = table[b]
+
 
 
 
@@ -149,7 +172,12 @@ def main():
 
 
             elif action == "SHOW_TABLE":
-                print("show table")
+                if len(table_index) == 0:
+                    print("NO TABLE CREATED")
+                    continue
+                for i,j in table_index.items():
+                    print(i)
+                    
 
 
 
@@ -199,7 +227,7 @@ def main():
 
 
             elif action == "EXIT_TABLE":
-                print("EXIT TABLE")
+                curr_table = None
 
 
 
@@ -249,15 +277,15 @@ def main():
 
 
             elif action == "INSERT":
-                # Check if they provided enough arguments
-                if len(command_parts) < 4:
-                    print("Error: INSERT requires ID, Name, and Email.")
-                else:
-                    user_id = int(command_parts[1])
-                    name = command_parts[2]
-                    email = command_parts[3]
-                    # my_db.insert(user_id, name, email)
-                    print(f"Success: Inserted {name} into database.")
+                lst = command_parts[1:]
+                if curr_table == None:
+                    print("ERROR NO TABLE OPEN")
+                    continue
+                if len(lst) != len(curr_table.col_name):
+                    print("ERROR INSUFFICIENT DATA")
+                curr_table.insert(lst)
+                continue
+
 
 
 
@@ -295,8 +323,8 @@ def main():
                     
             elif action == "DISPLAY":
                 # my_db.display_all()
-                print("Displaying all records...")
-
+                pass
+ 
 
 
 
