@@ -1,0 +1,51 @@
+# ==========================
+# Compiled code
+# ==========================
+*.o
+*.out
+*.obj
+*.exe
+*.dll
+*.so
+*.dylib
+*.class
+__pycache__/
+*.py[cod]
+*.pyd
+
+# ==========================
+# Environment / virtual envs
+# ==========================
+venv/
+env/
+.venv/
+.env
+*.env
+ENV/
+env.bak/
+venv.bak/
+
+# ==========================
+# OS-generated files
+# ==========================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# ==========================
+# Editor / IDE files (optional but common)
+# ==========================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ==========================
+# Logs
+# ==========================
+*.log
