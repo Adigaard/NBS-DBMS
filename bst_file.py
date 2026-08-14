@@ -1,4 +1,4 @@
-from collections import deque
+#from collections import deque
 class TreeNode:
     def __init__(self,val,lst,left=None,right=None):
         self.val = val
@@ -102,52 +102,45 @@ class bs_tree:
         else:
             return temp.lst
 
-
-
     #find min funciton
-    def min_node_fn(self):
-        if(self.root==None):return "DATA NOT FOUND"
-        temp=self.root
-        while(temp.left!=None):temp=temp.left
-        return temp
-
-
+    #def min_node_fn(self):
+    #    if(self.root==None):return "DATA NOT FOUND"
+    #    temp=self.root
+    #    while(temp.left!=None):temp=temp.left
+    #    return temp
 
 
     #find max function
-    def max_node_fn(self):
-        if(self.root==None):return "DATA NOT FOUND"
-        temp=self.root
-        while(temp.right!=None):temp=temp.right
-        return temp
-
-    #get height function
-    def GetHeight(self):
-        if self.root is None:
-            return "ERROR: TREE NOT FOUND"
-        q = deque()
-        height = -1
-        q.append(self.root)
-        while q:
-            level_size = len(q)
-            height += 1
-
-            for i in range(level_size):
-                curr = q.popleft()
-
-                if curr.left is not None:
-                    q.append(curr.left)
-
-                if curr.right is not None:
-                    q.append(curr.right)
-
-        return height
-
+    #def max_node_fn(self):
+    #    if(self.root==None):return "DATA NOT FOUND"
+    #    temp=self.root
+    #    while(temp.right!=None):temp=temp.right
+    #    return temp
 
     #clear function
     def clean(self):
         self.root=None
         self.size=0
+    #get height function
+    #def GetHeight(self):
+    #    if self.root is None:
+    #    q = deque()
+    #   height = -1
+    #    q.append(self.root)
+    #    while q:
+    #        level_size = len(q)
+    #        height += 1
+#
+    #        for i in range(level_size):
+    #            curr = q.popleft()
+#
+    #            if curr.left is not None:
+    #                q.append(curr.left)
+#
+    #            if curr.right is not None:
+    #                q.append(curr.right)
+#
+    #    return height
 
   # inorder function
     def inorder(self):

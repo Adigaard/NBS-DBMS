@@ -206,7 +206,7 @@ def main():
 
         # Catch Ctrl+C gracefully
         except KeyboardInterrupt:
-            print("\nForce quitting. Data may not be saved!")
+            print("\nForce quitting. Your data is safe!")
             save_database(table, table_index)
             sys.exit(0)
         except IndexError:
@@ -217,3 +217,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    

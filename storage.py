@@ -2,7 +2,7 @@ import json
 import os
 import zlib
 from engine import Table
-DB_FILE = "aiga_database.bin"  # no longer .json, since it's now compressed bytes
+DB_FILE = "nbs_database.bin"  # no longer .json, since it's now compressed bytes
 
 def save_database(table_list, table_index):
     data_dump = {"table_index": table_index, "tables": []}
